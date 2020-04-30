@@ -44,7 +44,7 @@ public class Main {
 //                    System.out.println("Digite a opcao: ");
 //                    respostas[0] = ler.next();
 //                    System.out.println("resposta: " +mostrarRespsotas(respostas)); 
-                    
+                    System.out.println("TESTE");
                     break;
                 case 3:
                     System.out.println("Creditos");
@@ -64,6 +64,5 @@ public class Main {
 //    
 //   }
 //    
-    
-    
+     
 }
