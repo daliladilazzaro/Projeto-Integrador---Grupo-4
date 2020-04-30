@@ -29,7 +29,7 @@ public class Main {
         Scanner ler = new Scanner(System.in);        
         boolean sair = false;        
         do {
-            System.out.println("1 - Instruções");
+            System.out.println("1 - Inicio");
             System.out.println("2 - Jogar");
             System.out.println("3 - Créditos");
             System.out.println("4 - Sair");
