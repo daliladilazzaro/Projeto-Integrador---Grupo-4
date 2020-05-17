@@ -149,11 +149,11 @@ public class Main {
         Random gerador = new Random();
 
         //vetor para guardar os index ja gerados no for que mostra as perguntas
-        int vetor[] = {10,10,10,10,10,10};
+        int vetor[] = {10, 10, 10, 10, 10, 10};
 
         //Ira anotar as alternativas como resposta
         List<String> respostas = new ArrayList<>();
-        
+
         //aqui eh o limite de perguntas, pro for nao ultrapassar
         int contador = 6;
 
@@ -167,8 +167,6 @@ public class Main {
 
             //gera um numero randomico de 0 a 5 e atribui ao index
             int index = gerador.nextInt(6);
-            
-
 
             //se INDEX numero gerado for igual a variavel auxiliar (representa o index anterior) ele nao ira continuar
             if (index != auxiliar) {
@@ -179,13 +177,13 @@ public class Main {
                     int valor = vetor[x];
                     //verifica se o index atual gerado pelo RANDOM eh igual o valor
                     if (index == valor) {
+                        valorExistente = true;
+                        contator++;
+                    } else {
+                        valorExistente = false;
+                        if (contator >= 1) {
                             valorExistente = true;
-                            contator ++;
-                    }else{
-                         valorExistente = false;
-                         if(contator >=1){
-                             valorExistente = true;
-                         }
+                        }
                     }
                 }
 
@@ -233,7 +231,7 @@ public class Main {
             try {
                 //recebemos o retorno das porcentagens referente a alternativa escolhida do usuario
                 vetor[i] = consultarPorcentagem(respostas.get(i), ordemPerguntas[i]);
-               // System.out.println("QUESTOES " + ordemPerguntas[i]);
+                // System.out.println("QUESTOES " + ordemPerguntas[i]);
             } catch (Exception e) {
                 System.out.println(e);
             }
@@ -258,7 +256,6 @@ public class Main {
 
         //for que vai percorrer o vetor que contem as porcentagens com base nas perguntas
         for (int i = 0; i < vetor.length; i++) {
-            //  for (int j = 0; j < 3; j++) { 
             double valor = vetor[i][3];
             nomeLider = (int) valor;
             switch (nomeLider) {
@@ -277,30 +274,24 @@ public class Main {
             }
             confianca = vetor[i][1] + auxConfianca;
             falencia = vetor[i][2] + auxFalencia;
-            System.out.println("CADA camp " + vetor[i]);
-            // }
-//            auxEstiloLider = estiloLider;
             auxFalencia = falencia;
             auxConfianca = confianca;
-
-            System.out.println("CADA " + vetor[i]);
         }
 
         if (estiloLiderAuto > estiloLiderLiberal) {
             if (estiloLiderAuto > estiloLiderDemo) {
                 float porcentagem = (float) estiloLiderAuto;
-                System.out.println("Parabens! Temos o seu estilo de lider, é AUTOCRÁTICO, com porcentagem de: " + porcentagem + "%" + " A equipe tem confiança de " + confianca + "%" + " e a porcentagem de falência foi de " + "falencia " + falencia + "%");
-                porcentagem = (float) estiloLiderLiberal;
-                System.out.println("liberal " + porcentagem);
-                porcentagem = (float) estiloLiderDemo;
-                System.out.println("demo " + porcentagem);
+                System.out.println("Parabens! Temos o seu estilo de lider, é AUTOCRÁTICO, com porcentagem de: " + porcentagem + "%" + " A equipe tem confiança de " + confianca + "%" + " e a porcentagem de falência foi de "+ falencia + "%");
             } else {
-                System.out.println("Parabens! Temos o seu estilo de lider, eh democratico, deu uma procentagem de:  " + estiloLiderDemo + " confianca" + confianca + " falencia" + falencia);
+                float porcentagem = (float) estiloLiderDemo;
+                System.out.println("Parabens! Temos o seu estilo de lider, eh DEMOCRÁTICO, deu uma procentagem de:  " + porcentagem + "%"+"  A equipe tem onfiança " + confianca + "%"+" e a porcentagem de falência foi de " + falencia+ "%");
             }
         } else if (estiloLiderLiberal > estiloLiderDemo) {
-            System.out.println("Parabens! Temos o seu estilo de lider, eh liberal, deu uma procentagem de:  " + estiloLiderLiberal + " confianca" + confianca + " falencia" + falencia);
+            float porcentagem = (float) estiloLiderLiberal;
+            System.out.println("Parabens! Temos o seu estilo de lider, eh LEBERAL, deu uma procentagem de:  " + porcentagem +"%"+ " A equipe tem confiança " + confianca + "%"+" e a porcentagem de falência foi de " + falencia+ "%");
         } else {
-            System.out.println("Parabens! Temos o seu estilo de lider, eh democratico, deu uma procentagem de:  " + estiloLiderDemo + " confianca" + confianca + " falencia" + falencia);
+            float porcentagem = (float) estiloLiderDemo;
+            System.out.println("Parabens! Temos o seu estilo de lider, eh DEMOCRÁTICO, deu uma procentagem de:  " + porcentagem + "%"+" A equipe tem confiança " + confianca + "%"+" e a porcentagem de falência foi de " + falencia+ "%");
         }
 
     }
