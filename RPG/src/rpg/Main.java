@@ -227,39 +227,81 @@ public class Main {
 
     static void imprimirRespostas(List<String> respostas, int [] ordemPerguntas) {
         
-      double vetor[][] = new double[6][6];
+      double vetor[][] = new double[6][5];
 
         for (int i = 0; i < 6; i++) {
             
             try {
                vetor[i] = consultarPorcentagem(respostas.get(i), ordemPerguntas[i]);
-                //System.out.println("QUESTOES "+ordemPerguntas[i]);
+                System.out.println("QUESTOES "+ordemPerguntas[i]);
             } catch (Exception e) {
                   System.out.println(e);
             }
         }
         
-           double estiloLider = 0;
            double confianca = 0;
            double falencia= 0;
+           
+           double estiloLiderAuto = 0;
+           double auxestiloLiderAuto = 0;
+           double estiloLiderLiberal = 0;
+           double auxestiloLiderLiberal = 0;
+           double estiloLiderDemo = 0;
+           double auxestiloLiderDemo = 0;
+           
+           int nomeLider=0;
+           
            double auxEstiloLider = 0;
            double auxConfianca = 0;
            double auxFalencia= 0;
            
         for (int i = 0; i < vetor.length; i++) {
-            for (int j = 0; j < 3; j++) {
-                estiloLider = vetor[i][0] + auxEstiloLider;
+          //  for (int j = 0; j < 3; j++) { 
+                double valor = vetor[i][3];
+                nomeLider = (int) valor;
+                switch(nomeLider){
+                    case 0:
+                        estiloLiderAuto = vetor[i][0] + auxestiloLiderAuto;
+                        auxestiloLiderAuto = estiloLiderAuto;
+                        break;
+                    case 1:
+                        estiloLiderLiberal = vetor[i][0] + auxestiloLiderLiberal;
+                        auxestiloLiderLiberal = estiloLiderLiberal;
+                        break;
+                    case 2:
+                        estiloLiderDemo = vetor[i][0] + auxestiloLiderDemo;
+                        auxestiloLiderDemo = estiloLiderDemo;
+                        break;
+                }
                 confianca = vetor[i][1] + auxConfianca;
                 falencia = vetor[i][2] + auxFalencia;
-                System.out.println("CADA camp "+vetor[i][j]);
-            }
-            auxEstiloLider = estiloLider;
+                System.out.println("CADA camp "+vetor[i]);
+           // }
+//            auxEstiloLider = estiloLider;
             auxFalencia = falencia;
             auxConfianca=confianca;
             
             System.out.println("CADA "+vetor[i]);
         }
-        System.out.println("TOTAL "+estiloLider+" confianca"+ confianca+" falencia"+ falencia);
+        
+       if(estiloLiderAuto > estiloLiderLiberal){
+           if(estiloLiderAuto > estiloLiderDemo){
+               
+               float porcentagem = (float)estiloLiderAuto;
+                System.out.println("Parabens! Temos o seu estilo de lider, é AUTOCRÁTICO, com porcentagem de: "+porcentagem+"%"+" A equipe tem confiança de "+confianca+"%"+" e a porcentagem de falência foi de "+ "falencia"+ falencia+"%");
+                porcentagem = (float)estiloLiderLiberal;
+                System.out.println("liberal "+porcentagem);
+                  porcentagem = (float)estiloLiderDemo;
+                System.out.println("demo "+porcentagem);
+           }else{
+                   System.out.println("Parabens! Temos o seu estilo de lider, eh democratico, deu uma procentagem de:  "+estiloLiderDemo+" confianca"+ confianca+" falencia"+ falencia);
+           }
+       }else if(estiloLiderLiberal > estiloLiderDemo){
+             System.out.println("Parabens! Temos o seu estilo de lider, eh liberal, deu uma procentagem de:  "+estiloLiderLiberal+" confianca"+ confianca+" falencia"+ falencia);
+       }else{
+                   System.out.println("Parabens! Temos o seu estilo de lider, eh democratico, deu uma procentagem de:  "+estiloLiderDemo+" confianca"+ confianca+" falencia"+ falencia);
+           }
+       
     }
     
     static double [] consultarPorcentagem(String resposta, int numeroPergunta){
@@ -281,49 +323,54 @@ public class Main {
                    break;
         }
         
+//        TABELA dos valores
+//        autocratico = 0
+//        liberal = 1
+//        democratico = 2
+        
        double alternativas[][][]= {
            {  
-            {16.67, -15,-5},
-            {16.67, 15, 20},
-            {16.67, -15, -5},
-            {16.67, 15, -10}
+            {16.67, -15,-5,0},
+            {16.67, 15, 20,1},
+            {16.67, -15, -5,0},
+            {16.67, 15, -10,2}
            }, 
            {
-            {16.67,-15,30},
-            {16.67,15,-25},
-            {16.67,-15,15},
-            {16.67,15,-25}
+            {16.67,-15,30,0},
+            {16.67,15,-25,2},
+            {16.67,-15,15,1},
+            {16.67,15,-25,2}
            },
            {
-            {16.67, 20, -15},
-            {16.67, -20, 20},
-            {16.67, 20, 10},
-            {16.67, 20, 10}
+            {16.67, 20, -15,2},
+            {16.67, -20, 20,0},
+            {16.67, 20, 10,1},
+            {16.67, 20, 10,1}
            },
            {
-            {16.67, 15, 30},
-            {16.67, 15, 30},
-            {16.67, -15, 20},
-            {16.67, 15, -10}
+            {16.67, 15, 30,1},
+            {16.67, 15, 30,1},
+            {16.67, -15, 20,0},
+            {16.67, 15, -10,2}
            },
            {
-            {16.67, -15, -5},
-            {16.67, 15, -20},
-            {16.67, 15, 20},
-            {16.67, -15, -5}
+            {16.67, -15, -5,0},
+            {16.67, 15, -20,2},
+            {16.67, 15, 20,1},
+            {16.67, -15, -5,0}
            },
             {
-            {16.67, 20, -20},
-            {16.67, 20, -20},
-            {16.67, 20, -15},
-            {16.67, -20, 30}
+            {16.67, 20, -20,2},
+            {16.67, 20, -20,2},
+            {16.67, 20, -15,1},
+            {16.67, -20, 30,0}
            },
            
        };
-        double vetor[] = new double[3];
+        double vetor[] = new double[4];
    
         
-        for (int i = 0; i <3; i++) {
+        for (int i = 0; i <4; i++) {
             try {
                  vetor[i] = alternativas[numeroPergunta][alternativaEmInteiro][i];
                 System.out.println(vetor[i]);
