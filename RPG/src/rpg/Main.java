@@ -173,17 +173,18 @@ public class Main {
             if (index != auxiliar) {
                 //percorrer o vetor para verificar se o index da pergunta ja foi exibido
                 for (int x = 0; x < 6; x++) {
-                    int indexEvetor0 = 0;
+                    boolean indexEvetor0 = false;
                     //traz o valor do vetor pra variavel
                     int valor = vetor[x];
                     
-                    if(index == 0){
-                        indexEvetor0 ++;
+                    if((index == 0)&& (valor == 0)){
+                        indexEvetor0 =true;
                     }
                     //verifica se o index atual gerado pelo RANDOM eh igual o valor
                     if (index == valor) {
                         //se for quer dizer que a pergunta ja foi exibida
-                        if(indexEvetor0 == 1){
+                        if(indexEvetor0){
+                            indexEvetor0=false;
                         }else{
                         valorExistente = true;
                         }
@@ -226,21 +227,39 @@ public class Main {
 
     static void imprimirRespostas(List<String> respostas, int [] ordemPerguntas) {
         
-        double vetor[] = consultarPorcentagem(respostas.get(0), ordemPerguntas[0]);
-//        for (int i = 0; i < ordemPerguntas.length; i++) {
-//            
-//                    for (int j = 0; j < 3; j++) {
-//                         vetor[i][j] = consultarPorcentagem(respostas.get(i), ordemPerguntas[i]);
-//                     }
-//            
-//                System.out.println("QUESTOES "+ordemPerguntas[i]);
-//        }
-        
-        for (int i = 0; i < vetor.length; i++) {
+      double vetor[][] = new double[6][6];
 
-                System.out.println("PORCENTAGENS POR QUESTOES " + vetor[i]);
-           
+        for (int i = 0; i < 6; i++) {
+            
+            try {
+               vetor[i] = consultarPorcentagem(respostas.get(i), ordemPerguntas[i]);
+                //System.out.println("QUESTOES "+ordemPerguntas[i]);
+            } catch (Exception e) {
+                  System.out.println(e);
+            }
         }
+        
+           double estiloLider = 0;
+           double confianca = 0;
+           double falencia= 0;
+           double auxEstiloLider = 0;
+           double auxConfianca = 0;
+           double auxFalencia= 0;
+           
+        for (int i = 0; i < vetor.length; i++) {
+            for (int j = 0; j < 3; j++) {
+                estiloLider = vetor[i][0] + auxEstiloLider;
+                confianca = vetor[i][1] + auxConfianca;
+                falencia = vetor[i][2] + auxFalencia;
+                System.out.println("CADA camp "+vetor[i][j]);
+            }
+            auxEstiloLider = estiloLider;
+            auxFalencia = falencia;
+            auxConfianca=confianca;
+            
+            System.out.println("CADA "+vetor[i]);
+        }
+        System.out.println("TOTAL "+estiloLider+" confianca"+ confianca+" falencia"+ falencia);
     }
     
     static double [] consultarPorcentagem(String resposta, int numeroPergunta){
@@ -305,8 +324,13 @@ public class Main {
    
         
         for (int i = 0; i <3; i++) {
-          vetor[i] = alternativas[numeroPergunta][alternativaEmInteiro][i];
-          System.out.println(vetor[i]);
+            try {
+                 vetor[i] = alternativas[numeroPergunta][alternativaEmInteiro][i];
+                System.out.println(vetor[i]);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+ 
         }
         
         return vetor;
