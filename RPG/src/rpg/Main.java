@@ -17,6 +17,7 @@ import java.util.Vector;
  */
 public class Main {
 
+    //instnciamos globalmente o leitor 
     static Scanner ler = new Scanner(System.in);
 
     /**
@@ -93,7 +94,7 @@ public class Main {
 
         question.add("Você identificou que o valor do aluguel da empresa não compromete a situação da financeira,"
                 + " porém a localização e acessibilidade não é boa para os funcionários.");
-        
+
         //retornando lista de questões
         return question;
     }
@@ -147,7 +148,7 @@ public class Main {
         //Instancia a class Random
         Random gerador = new Random();
 
-       //vetor para guardar os index ja gerados no for que mostra as perguntas
+        //vetor para guardar os index ja gerados no for que mostra as perguntas
         int vetor[] = new int[6];
 
         //Ira anotar as alternativas como resposta
@@ -167,26 +168,28 @@ public class Main {
             //gera um numero randomico de 0 a 5 e atribui ao index
             int index = gerador.nextInt(6);
 
-         
-            
             //se INDEX numero gerado for igual a variavel auxiliar (representa o index anterior) ele nao ira continuar
             if (index != auxiliar) {
                 //percorrer o vetor para verificar se o index da pergunta ja foi exibido
                 for (int x = 0; x < 6; x++) {
+                    //setando um valor boolean para vermos quando o index for 0 e a casa no vetor tiver 0 iremos aceitar
                     boolean indexEvetor0 = false;
                     //traz o valor do vetor pra variavel
                     int valor = vetor[x];
-                    
-                    if((index == 0)&& (valor == 0)){
-                        indexEvetor0 =true;
+
+                    //se for a primeira vez que o valor do vetor e o index forem 0, iremos setar como true 
+                    //Porque como ja instanciamos o vetor com as posicoes corretas, ele se recusava a mostrar a pergunta 0 do arraylist,
+                    //pq no if ali em baixo que verifica se sao iguais e confirma se ja existia o index no vetor
+                    if ((index == 0) && (valor == 0)) {
+                        indexEvetor0 = true;
                     }
                     //verifica se o index atual gerado pelo RANDOM eh igual o valor
                     if (index == valor) {
                         //se for quer dizer que a pergunta ja foi exibida
-                        if(indexEvetor0){
-                            indexEvetor0=false;
-                        }else{
-                        valorExistente = true;
+                        if (indexEvetor0) {
+                            indexEvetor0 = false;
+                        } else {
+                            valorExistente = true;
                         }
                     }
                 }
@@ -197,9 +200,9 @@ public class Main {
                     System.out.println("Pergunta " + (i + 1));
                     //Com base no INDEX gerado com classe randomica pega uma pergunta do array list
                     System.out.println(questions.get(index));
-          
+
                     //vai percorrer a matriz bidimenssional de ALTERNATIVAS referente a pergunta
-                    for (int j = 0; j < 4; j++) {                                       
+                    for (int j = 0; j < 4; j++) {
                         System.out.println(alternativas[index][j]);
                     }
                     //duas linhas pra responder a questao
@@ -207,7 +210,7 @@ public class Main {
                     respostas.add(ler.next().toUpperCase());
                     //adiciona o index inexistente ate o momento no vetor de index usados
                     vetor[i] = index;
-                }else{
+                } else {
                     //caso o index ja tenha usado o valor do i eh decrementando pq temos que ter 6 questoes
                     i--;
                 }
@@ -222,166 +225,173 @@ public class Main {
         }
 
         //metodo para imprimir na tela as respostas
-        imprimirRespostas(respostas, vetor );
+        imprimirRespostas(respostas, vetor);
     }
 
-    static void imprimirRespostas(List<String> respostas, int [] ordemPerguntas) {
-        
-      double vetor[][] = new double[6][5];
+    static void imprimirRespostas(List<String> respostas, int[] ordemPerguntas) {
+
+        //instanciamos um vetor pra receber as perguntas e as porcentagens
+        double vetor[][] = new double[6][5];
 
         for (int i = 0; i < 6; i++) {
-            
+            //para evitar paralizasao de compilacao e tratar erro
             try {
-               vetor[i] = consultarPorcentagem(respostas.get(i), ordemPerguntas[i]);
-                System.out.println("QUESTOES "+ordemPerguntas[i]);
+                //recebemos o retorno das porcentagens referente a alternativa escolhida do usuario
+                vetor[i] = consultarPorcentagem(respostas.get(i), ordemPerguntas[i]);
+               // System.out.println("QUESTOES " + ordemPerguntas[i]);
             } catch (Exception e) {
-                  System.out.println(e);
+                System.out.println(e);
             }
         }
-        
-           double confianca = 0;
-           double falencia= 0;
-           
-           double estiloLiderAuto = 0;
-           double auxestiloLiderAuto = 0;
-           double estiloLiderLiberal = 0;
-           double auxestiloLiderLiberal = 0;
-           double estiloLiderDemo = 0;
-           double auxestiloLiderDemo = 0;
-           
-           int nomeLider=0;
-           
-           double auxEstiloLider = 0;
-           double auxConfianca = 0;
-           double auxFalencia= 0;
-           
+
+        //variaveis que irao computar o valor total de confianca e falencia do usuario
+        double confianca = 0;
+        double falencia = 0;
+        //separamos as variaveis que conteram os valores totais de cada tipo de lideranca do usuario
+        //auxiliares servem pra guardar os valores anteriores do for e calcular
+        double estiloLiderAuto = 0;
+        double auxestiloLiderAuto = 0;
+        double estiloLiderLiberal = 0;
+        double auxestiloLiderLiberal = 0;
+        double estiloLiderDemo = 0;
+        double auxestiloLiderDemo = 0;
+        //fizemos um swtich para separar os tipos de lideres 
+        int nomeLider = 0;
+        //auxiliares servem pra guardar os valores anteriores do for e calcular
+        double auxConfianca = 0;
+        double auxFalencia = 0;
+
+        //for que vai percorrer o vetor que contem as porcentagens com base nas perguntas
         for (int i = 0; i < vetor.length; i++) {
-          //  for (int j = 0; j < 3; j++) { 
-                double valor = vetor[i][3];
-                nomeLider = (int) valor;
-                switch(nomeLider){
-                    case 0:
-                        estiloLiderAuto = vetor[i][0] + auxestiloLiderAuto;
-                        auxestiloLiderAuto = estiloLiderAuto;
-                        break;
-                    case 1:
-                        estiloLiderLiberal = vetor[i][0] + auxestiloLiderLiberal;
-                        auxestiloLiderLiberal = estiloLiderLiberal;
-                        break;
-                    case 2:
-                        estiloLiderDemo = vetor[i][0] + auxestiloLiderDemo;
-                        auxestiloLiderDemo = estiloLiderDemo;
-                        break;
-                }
-                confianca = vetor[i][1] + auxConfianca;
-                falencia = vetor[i][2] + auxFalencia;
-                System.out.println("CADA camp "+vetor[i]);
-           // }
+            //  for (int j = 0; j < 3; j++) { 
+            double valor = vetor[i][3];
+            nomeLider = (int) valor;
+            switch (nomeLider) {
+                case 0:
+                    estiloLiderAuto = vetor[i][0] + auxestiloLiderAuto;
+                    auxestiloLiderAuto = estiloLiderAuto;
+                    break;
+                case 1:
+                    estiloLiderLiberal = vetor[i][0] + auxestiloLiderLiberal;
+                    auxestiloLiderLiberal = estiloLiderLiberal;
+                    break;
+                case 2:
+                    estiloLiderDemo = vetor[i][0] + auxestiloLiderDemo;
+                    auxestiloLiderDemo = estiloLiderDemo;
+                    break;
+            }
+            confianca = vetor[i][1] + auxConfianca;
+            falencia = vetor[i][2] + auxFalencia;
+            System.out.println("CADA camp " + vetor[i]);
+            // }
 //            auxEstiloLider = estiloLider;
             auxFalencia = falencia;
-            auxConfianca=confianca;
-            
-            System.out.println("CADA "+vetor[i]);
+            auxConfianca = confianca;
+
+            System.out.println("CADA " + vetor[i]);
         }
-        
-       if(estiloLiderAuto > estiloLiderLiberal){
-           if(estiloLiderAuto > estiloLiderDemo){
-               
-               float porcentagem = (float)estiloLiderAuto;
-                System.out.println("Parabens! Temos o seu estilo de lider, é AUTOCRÁTICO, com porcentagem de: "+porcentagem+"%"+" A equipe tem confiança de "+confianca+"%"+" e a porcentagem de falência foi de "+ "falencia"+ falencia+"%");
-                porcentagem = (float)estiloLiderLiberal;
-                System.out.println("liberal "+porcentagem);
-                  porcentagem = (float)estiloLiderDemo;
-                System.out.println("demo "+porcentagem);
-           }else{
-                   System.out.println("Parabens! Temos o seu estilo de lider, eh democratico, deu uma procentagem de:  "+estiloLiderDemo+" confianca"+ confianca+" falencia"+ falencia);
-           }
-       }else if(estiloLiderLiberal > estiloLiderDemo){
-             System.out.println("Parabens! Temos o seu estilo de lider, eh liberal, deu uma procentagem de:  "+estiloLiderLiberal+" confianca"+ confianca+" falencia"+ falencia);
-       }else{
-                   System.out.println("Parabens! Temos o seu estilo de lider, eh democratico, deu uma procentagem de:  "+estiloLiderDemo+" confianca"+ confianca+" falencia"+ falencia);
-           }
-       
+
+        if (estiloLiderAuto > estiloLiderLiberal) {
+            if (estiloLiderAuto > estiloLiderDemo) {
+
+                float porcentagem = (float) estiloLiderAuto;
+                System.out.println("Parabens! Temos o seu estilo de lider, é AUTOCRÁTICO, com porcentagem de: " + porcentagem + "%" + " A equipe tem confiança de " + confianca + "%" + " e a porcentagem de falência foi de " + "falencia" + falencia + "%");
+                porcentagem = (float) estiloLiderLiberal;
+                System.out.println("liberal " + porcentagem);
+                porcentagem = (float) estiloLiderDemo;
+                System.out.println("demo " + porcentagem);
+            } else {
+                System.out.println("Parabens! Temos o seu estilo de lider, eh democratico, deu uma procentagem de:  " + estiloLiderDemo + " confianca" + confianca + " falencia" + falencia);
+            }
+        } else if (estiloLiderLiberal > estiloLiderDemo) {
+            System.out.println("Parabens! Temos o seu estilo de lider, eh liberal, deu uma procentagem de:  " + estiloLiderLiberal + " confianca" + confianca + " falencia" + falencia);
+        } else {
+            System.out.println("Parabens! Temos o seu estilo de lider, eh democratico, deu uma procentagem de:  " + estiloLiderDemo + " confianca" + confianca + " falencia" + falencia);
+        }
+
     }
-    
-    static double [] consultarPorcentagem(String resposta, int numeroPergunta){
-        
+
+    static double[] consultarPorcentagem(String resposta, int numeroPergunta) {
+        //Essa variavel vai determinar o valor da alternativa respondida de 0 a 3 , representando a posicao das alternativas no array tridimenssional
         int alternativaEmInteiro = 0;
-        
-        switch(resposta){
+
+        switch (resposta) {
             case "A":
                 alternativaEmInteiro = 0;
-                   break;
+                break;
             case "B":
                 alternativaEmInteiro = 1;
-                   break;
+                break;
             case "C":
                 alternativaEmInteiro = 2;
-                   break;
+                break;
             case "D":
                 alternativaEmInteiro = 3;
-                   break;
+                break;
         }
-        
+
 //        TABELA dos valores
 //        autocratico = 0
 //        liberal = 1
 //        democratico = 2
-        
-       double alternativas[][][]= {
-           {  
-            {16.67, -15,-5,0},
-            {16.67, 15, 20,1},
-            {16.67, -15, -5,0},
-            {16.67, 15, -10,2}
-           }, 
-           {
-            {16.67,-15,30,0},
-            {16.67,15,-25,2},
-            {16.67,-15,15,1},
-            {16.67,15,-25,2}
-           },
-           {
-            {16.67, 20, -15,2},
-            {16.67, -20, 20,0},
-            {16.67, 20, 10,1},
-            {16.67, 20, 10,1}
-           },
-           {
-            {16.67, 15, 30,1},
-            {16.67, 15, 30,1},
-            {16.67, -15, 20,0},
-            {16.67, 15, -10,2}
-           },
-           {
-            {16.67, -15, -5,0},
-            {16.67, 15, -20,2},
-            {16.67, 15, 20,1},
-            {16.67, -15, -5,0}
-           },
+        //Instanciamos um double tridimensional com os valores das porcentagens ja definidas com base nas altetnativas 
+        //[0] o primeiro significa a questao (no caso no arraylist 0 eh a primeira questao)
+        //[0] [0] o segundo a alternativa (no caso A conforme o swtich case)
+        //[0] [0] [0] ja o terceiro, fica as porcentagens cadastradas referente a alternativa A da pergunta 1 (0 no ArrayList)
+        double alternativas[][][] = {
             {
-            {16.67, 20, -20,2},
-            {16.67, 20, -20,2},
-            {16.67, 20, -15,1},
-            {16.67, -20, 30,0}
-           },
-           
-       };
+                {16.67, -15, -5, 0},
+                {16.67, 15, 20, 1},
+                {16.67, -15, -5, 0},
+                {16.67, 15, -10, 2}
+            },
+            {
+                {16.67, -15, 30, 0},
+                {16.67, 15, -25, 2},
+                {16.67, -15, 15, 1},
+                {16.67, 15, -25, 2}
+            },
+            {
+                {16.67, 20, -15, 2},
+                {16.67, -20, 20, 0},
+                {16.67, 20, 10, 1},
+                {16.67, 20, 10, 1}
+            },
+            {
+                {16.67, 15, 30, 1},
+                {16.67, 15, 30, 1},
+                {16.67, -15, 20, 0},
+                {16.67, 15, -10, 2}
+            },
+            {
+                {16.67, -15, -5, 0},
+                {16.67, 15, -20, 2},
+                {16.67, 15, 20, 1},
+                {16.67, -15, -5, 0}
+            },
+            {
+                {16.67, 20, -20, 2},
+                {16.67, 20, -20, 2},
+                {16.67, 20, -15, 1},
+                {16.67, -20, 30, 0}
+            },};
+        //Criar um vetor pra receber as porcentagens da alternativa escolhida
         double vetor[] = new double[4];
-   
-        
-        for (int i = 0; i <4; i++) {
+
+        //vamos percorrer nosso tridimenssional, mas apenas no ultimo index, ou seja, das porcentagens
+        for (int i = 0; i < 4; i++) {
+            //try obrigatorio para evitar erros na compilacao e travar o programa
             try {
-                 vetor[i] = alternativas[numeroPergunta][alternativaEmInteiro][i];
-                System.out.println(vetor[i]);
+                //iremos atribuir no vetor as porcentagens das ALTERNATIVAS
+                //repare que os paramos das [] [] sao os valores passados por parametro no metodo e o valor da resposta baseado no swtch case
+                vetor[i] = alternativas[numeroPergunta][alternativaEmInteiro][i];
+                //System.out.println(vetor[i]);
             } catch (Exception e) {
                 System.out.println(e);
             }
- 
         }
-        
+        //retornamos as porcentagens com base na alternativa escolhida
         return vetor;
     }
-    
-    
+
 }
