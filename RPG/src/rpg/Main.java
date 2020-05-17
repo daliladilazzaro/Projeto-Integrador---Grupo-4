@@ -149,11 +149,11 @@ public class Main {
         Random gerador = new Random();
 
         //vetor para guardar os index ja gerados no for que mostra as perguntas
-        int vetor[] = new int[6];
+        int vetor[] = {10,10,10,10,10,10};
 
         //Ira anotar as alternativas como resposta
         List<String> respostas = new ArrayList<>();
-
+        
         //aqui eh o limite de perguntas, pro for nao ultrapassar
         int contador = 6;
 
@@ -167,30 +167,25 @@ public class Main {
 
             //gera um numero randomico de 0 a 5 e atribui ao index
             int index = gerador.nextInt(6);
+            
+
 
             //se INDEX numero gerado for igual a variavel auxiliar (representa o index anterior) ele nao ira continuar
             if (index != auxiliar) {
+                int contator = 0;
                 //percorrer o vetor para verificar se o index da pergunta ja foi exibido
                 for (int x = 0; x < 6; x++) {
-                    //setando um valor boolean para vermos quando o index for 0 e a casa no vetor tiver 0 iremos aceitar
-                    boolean indexEvetor0 = false;
                     //traz o valor do vetor pra variavel
                     int valor = vetor[x];
-
-                    //se for a primeira vez que o valor do vetor e o index forem 0, iremos setar como true 
-                    //Porque como ja instanciamos o vetor com as posicoes corretas, ele se recusava a mostrar a pergunta 0 do arraylist,
-                    //pq no if ali em baixo que verifica se sao iguais e confirma se ja existia o index no vetor
-                    if ((index == 0) && (valor == 0)) {
-                        indexEvetor0 = true;
-                    }
                     //verifica se o index atual gerado pelo RANDOM eh igual o valor
                     if (index == valor) {
-                        //se for quer dizer que a pergunta ja foi exibida
-                        if (indexEvetor0) {
-                            indexEvetor0 = false;
-                        } else {
                             valorExistente = true;
-                        }
+                            contator ++;
+                    }else{
+                         valorExistente = false;
+                         if(contator >=1){
+                             valorExistente = true;
+                         }
                     }
                 }
 
@@ -293,9 +288,8 @@ public class Main {
 
         if (estiloLiderAuto > estiloLiderLiberal) {
             if (estiloLiderAuto > estiloLiderDemo) {
-
                 float porcentagem = (float) estiloLiderAuto;
-                System.out.println("Parabens! Temos o seu estilo de lider, é AUTOCRÁTICO, com porcentagem de: " + porcentagem + "%" + " A equipe tem confiança de " + confianca + "%" + " e a porcentagem de falência foi de " + "falencia" + falencia + "%");
+                System.out.println("Parabens! Temos o seu estilo de lider, é AUTOCRÁTICO, com porcentagem de: " + porcentagem + "%" + " A equipe tem confiança de " + confianca + "%" + " e a porcentagem de falência foi de " + "falencia " + falencia + "%");
                 porcentagem = (float) estiloLiderLiberal;
                 System.out.println("liberal " + porcentagem);
                 porcentagem = (float) estiloLiderDemo;
@@ -348,7 +342,7 @@ public class Main {
             {
                 {16.67, -15, 30, 0},
                 {16.67, 15, -25, 2},
-                {16.67, -15, 15, 1},
+                {16.67, -15, 20, 1},
                 {16.67, 15, -25, 2}
             },
             {
@@ -372,7 +366,7 @@ public class Main {
             {
                 {16.67, 20, -20, 2},
                 {16.67, 20, -20, 2},
-                {16.67, 20, -15, 1},
+                {16.67, 20, -20, 1},
                 {16.67, -20, 30, 0}
             },};
         //Criar um vetor pra receber as porcentagens da alternativa escolhida
