@@ -278,22 +278,25 @@ public class Main {
             auxConfianca = confianca;
         }
 
-        if (estiloLiderAuto > estiloLiderLiberal) {
-            if (estiloLiderAuto > estiloLiderDemo) {
-                float porcentagem = (float) estiloLiderAuto;
-                System.out.println("Parabens! Temos o seu estilo de lider, é AUTOCRÁTICO, com porcentagem de: " + porcentagem + "%" + " A equipe tem confiança de " + confianca + "%" + " e a porcentagem de falência foi de "+ falencia + "%");
+        if (falencia < 0) {
+            System.out.println("Que pena! Você conseguiu falir nossa empresa. Com base nas suas escolhas, perdemos muito dinheiro... E ficamos no negativo.");
+        } else {
+            if (estiloLiderAuto > estiloLiderLiberal) {
+                if (estiloLiderAuto > estiloLiderDemo) {
+                    float porcentagem = (float) estiloLiderAuto;
+                    System.out.println("Parabens! Temos o seu estilo de lider, é AUTOCRÁTICO, com porcentagem de: " + porcentagem + "%" + " A equipe tem confiança de " + confianca + "%" + " e a porcentagem de falência foi de " + falencia + "%");
+                } else {
+                    float porcentagem = (float) estiloLiderDemo;
+                    System.out.println("Parabens! Temos o seu estilo de lider, eh DEMOCRÁTICO, deu uma procentagem de:  " + porcentagem + "%" + "  A equipe tem onfiança " + confianca + "%" + " e a porcentagem de falência foi de " + falencia + "%");
+                }
+            } else if (estiloLiderLiberal > estiloLiderDemo) {
+                float porcentagem = (float) estiloLiderLiberal;
+                System.out.println("Parabens! Temos o seu estilo de lider, eh LEBERAL, deu uma procentagem de:  " + porcentagem + "%" + " A equipe tem confiança " + confianca + "%" + " e a porcentagem de falência foi de " + falencia + "%");
             } else {
                 float porcentagem = (float) estiloLiderDemo;
-                System.out.println("Parabens! Temos o seu estilo de lider, eh DEMOCRÁTICO, deu uma procentagem de:  " + porcentagem + "%"+"  A equipe tem onfiança " + confianca + "%"+" e a porcentagem de falência foi de " + falencia+ "%");
+                System.out.println("Parabens! Temos o seu estilo de lider, eh DEMOCRÁTICO, deu uma procentagem de:  " + porcentagem + "%" + " A equipe tem confiança " + confianca + "%" + " e a porcentagem de falência foi de " + falencia + "%");
             }
-        } else if (estiloLiderLiberal > estiloLiderDemo) {
-            float porcentagem = (float) estiloLiderLiberal;
-            System.out.println("Parabens! Temos o seu estilo de lider, eh LEBERAL, deu uma procentagem de:  " + porcentagem +"%"+ " A equipe tem confiança " + confianca + "%"+" e a porcentagem de falência foi de " + falencia+ "%");
-        } else {
-            float porcentagem = (float) estiloLiderDemo;
-            System.out.println("Parabens! Temos o seu estilo de lider, eh DEMOCRÁTICO, deu uma procentagem de:  " + porcentagem + "%"+" A equipe tem confiança " + confianca + "%"+" e a porcentagem de falência foi de " + falencia+ "%");
         }
-
     }
 
     static double[] consultarPorcentagem(String resposta, int numeroPergunta) {
