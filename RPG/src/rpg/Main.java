@@ -9,14 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Vector;
 
 /**
  *
  * @author kujikeo
  */
 public class Main {
-    
-     static Scanner ler = new Scanner(System.in);
+
+    static Scanner ler = new Scanner(System.in);
 
     /**
      * @param args the command line arguments
@@ -28,7 +29,7 @@ public class Main {
         boolean sair = false;
 
         List<String> questions = criarQuestoes();
-        List<String> alternativas = criarAlternativas();
+        String[][] alternativas = criarAlternativas();
 
         do {
             imprimirMenu();
@@ -68,8 +69,10 @@ public class Main {
     }
 
     static List<String> criarQuestoes() {
+        //criação do ArrayList de questões
         List<String> question = new ArrayList<>();
 
+        //Adicionando perguntas aos indexs
         question.add("Os funcionários chegaram bem empolgados para conhecer o novo gestor que ajudará a organização se manter em período de crise financeira.");
 
         question.add("Após apresentação para todos, você decidiu se comunicar com o Recursos Humanos da empresa, sobre carga horária dos funcionários, benefícios, salários e bonificações.\n"
@@ -90,76 +93,224 @@ public class Main {
 
         question.add("Você identificou que o valor do aluguel da empresa não compromete a situação da financeira,"
                 + " porém a localização e acessibilidade não é boa para os funcionários.");
-
+        
+        //retornando lista de questões
         return question;
     }
 
-    static List<String> criarAlternativas() {
+    static String[][] criarAlternativas() {
 
-        List<String> alternativas = new ArrayList<>();
-
-        alternativas.add("A) Manda-los ao trabalho, já que a empresa está em uma situação de risco financeiro; \n"
-                + "B) Cumprimenta todos, um a um, informando que não precisaram se preocupar com nada, pois você está sob controle de tudo, e aproveita e toma café da manhã com eles; \n"
-                + "C) Apenas mande todos irem trabalhar; \n"
-                + "D) faz uma reunião coletiva, se apresentando, e informando a todos a situação atual da empresa, pedindo a compreensão de todos, e pedindo para que todos se unem para manter a empresa, e superar esta crise. ");
-
-        alternativas.add("A) Conversa com o RH para a demissão com justa causa, ou seja, serem demitidos sem seus direitos, de todos que não estão agindo de forma adequada. \n"
-                + "B) Começa mudança nos setores, com mais monitoramento, acerta os valores devidos, e distribui as atividades de forma que não deixem uns com mais serviços que outros, e evitando as horas extras, e respeitando a hora de almoço. \n"
-                + "C) Pede para o RH decidir o que é melhor, já que ele está lá por mais tempo, e sabe o que é melhor para empresa. \n"
-                + "D) Conversa com os funcionários, em seus respectivos setores, é transparente com a situação atual, e pede colaboração de todos, e pede sugestões de melhoria, informando que os valores serão acertados, e remanejamento de horários para evitar horas extras, e que caso não haja melhoras, ocorrerá o desligamento daqueles que não cumprirem as novas normas.  \n");
-
-        alternativas.add("A) Determina que qualquer compra na empresa, terá que passar por análise pelo almoxarifado, para depois passar pelo setor de compras \n"
-                + "B) Demite estes funcionários responsáveis do setor, pela incompetência de não terem se atentado com este controle.  \n"
-                + "C) Informa que todos deveram conversar com o setor de compras antes, já que eles fazem controle de nota fiscal, eles tem de saber como está os materiais, e depois conversar com o setor de almoxarifado. \n"
-                + "D) Matem como está, já que ninguém tem culpa de ter chegado a este estado, por isso deixa que eles resolvam como acham melhor, já que quem está trabalhando com aquilo, sabe melhor que o chefe que não está lá no dia a dia.  \n");
-
-        alternativas.add("A) Concorda com o RH, e faz o pedido para comprar computadores para todos, bem como, máquinas novas, e faz doação com os antigos. \n"
-                + "B) Concorda com o RH, e faz o pedido para comprar computadores para todos, e coloca para vender no mercado livre os computadores antigos. \n"
-                + "C) Não compra nenhum, e fala para vendedora que está com problemas com o notebook comprar um novo para a empresa, já que a organização não está em um bom momento. \n"
-                + "D) Compra para a vendedora, e pede para o setor de T.I. verificar se há mais algum com problemas, para evitar atrasos. \n");
-
-        alternativas.add("A) Crie uma política de controle de gastos, onde tudo que for custo da empresa será necessária sua assinatura para aprovação. \n"
-                + "B) Cria uma reunião para estipular os gastos mensais por departamento, com a presença dos gestores de cada área. \n"
-                + "C) Mantém como está, pois estes custos não interferem nos gastos financeiros da empresa. \n"
-                + "D) Crie sozinho um calendário e impões a quantidade de gastos mensais de cada departamento. \n ");
-
-        alternativas.add("A) Muda a empresa para uma região mais desenvolvida, mas que é de fácil acesso para a maioria dos funcionários. \n"
-                + "B) Continua no mesmo local, e oferece fretado para os funcionários em uma estação de trem próxima. \n"
-                + "C) Vai para uma região mais afastada para pagar aluguel mais barato, e paga uber para cada um dos funcionários para não se preocupar com distancia. \n"
-                + "D) Continua no mesmo local, e solicita para que estão descontentes, se desligarem da empresa. \n");
-
+        //Criando Array Bidimenssional com base nos index das perguntas
+        String alternativas[][] = {
+            ///QUESTAO 1 (0 no ArrayList)
+            {"A) Manda-los ao trabalho, já que a empresa está em uma situação de risco financeiro; \n",
+                "B) Cumprimenta todos, um a um, informando que não precisaram se preocupar com nada, pois você está sob controle de tudo, e aproveita e toma café da manhã com eles; \n",
+                "C) Apenas mande todos irem trabalhar; \n",
+                "D) Faz uma reunião coletiva, se apresentando, e informando a todos a situação atual da empresa, pedindo a compreensão de todos, e pedindo para que todos se unem para manter a empresa, e superar esta crise.\n"
+            },
+            //QUESTAO 2 (1 no ArrayList)
+            {"A) Conversa com o RH para a demissão com justa causa, ou seja, serem demitidos sem seus direitos, de todos que não estão agindo de forma adequada. \n",
+                "B) Começa mudança nos setores, com mais monitoramento, acerta os valores devidos, e distribui as atividades de forma que não deixem uns com mais serviços que outros, e evitando as horas extras, e respeitando a hora de almoço. \n",
+                "C) Pede para o RH decidir o que é melhor, já que ele está lá por mais tempo, e sabe o que é melhor para empresa. \n",
+                "D) Conversa com os funcionários, em seus respectivos setores, é transparente com a situação atual, e pede colaboração de todos, e pede sugestões de melhoria, informando que os valores serão acertados, e remanejamento de horários para evitar horas extras, e que caso não haja melhoras, ocorrerá o desligamento daqueles que não cumprirem as novas normas.  \n"
+            },
+            //QUESTAO 3 (2 no ArrayList)
+            {"A) Determina que qualquer compra na empresa, terá que passar por análise pelo almoxarifado, para depois passar pelo setor de compras \n",
+                "B) Demite estes funcionários responsáveis do setor, pela incompetência de não terem se atentado com este controle.  \n",
+                "C) Informa que todos deveram conversar com o setor de compras antes, já que eles fazem controle de nota fiscal, eles tem de saber como está os materiais, e depois conversar com o setor de almoxarifado. \n",
+                "D) Matem como está, já que ninguém tem culpa de ter chegado a este estado, por isso deixa que eles resolvam como acham melhor, já que quem está trabalhando com aquilo, sabe melhor que o chefe que não está lá no dia a dia.  \n"
+            },
+            //QUESTAO 4 (3 no ArrayList)
+            {"A) Concorda com o RH, e faz o pedido para comprar computadores para todos, bem como, máquinas novas, e faz doação com os antigos. \n",
+                "B) Concorda com o RH, e faz o pedido para comprar computadores para todos, e coloca para vender no mercado livre os computadores antigos. \n",
+                "C) Não compra nenhum, e fala para vendedora que está com problemas com o notebook comprar um novo para a empresa, já que a organização não está em um bom momento. \n",
+                "D) Compra para a vendedora, e pede para o setor de T.I. verificar se há mais algum com problemas, para evitar atrasos. \n"
+            },
+            //QUESTAO 5 (4 no ArrayList)
+            {"A) Crie uma política de controle de gastos, onde tudo que for custo da empresa será necessária sua assinatura para aprovação. \n",
+                "B) Cria uma reunião para estipular os gastos mensais por departamento, com a presença dos gestores de cada área. \n",
+                "C) Mantém como está, pois estes custos não interferem nos gastos financeiros da empresa. \n",
+                "D) Crie sozinho um calendário e impões a quantidade de gastos mensais de cada departamento. \n "
+            },
+            //QUESTAO 6 (5 no ArrayList)
+            {"A) Muda a empresa para uma região mais desenvolvida, mas que é de fácil acesso para a maioria dos funcionários. \n",
+                "B) Continua no mesmo local, e oferece fretado para os funcionários em uma estação de trem próxima. \n",
+                "C) Vai para uma região mais afastada para pagar aluguel mais barato, e paga uber para cada um dos funcionários para não se preocupar com distancia. \n",
+                "D) Continua no mesmo local, e solicita para que estão descontentes, se desligarem da empresa. \n"
+            }
+        };
         return alternativas;
     }
 
-    static void questoes(List<String> questions, List<String> alternativas) {
+    static void questoes(List<String> questions, String[][] alternativas) {
+
+        //Instancia a class Random
         Random gerador = new Random();
 
-        List<String> respostas = new ArrayList<>();
-        int contador = 6;
-        int auxiliar = 10;
-        for (int i = 1; i <= contador; i++) {
+       //vetor para guardar os index ja gerados no for que mostra as perguntas
+        int vetor[] = new int[6];
 
+        //Ira anotar as alternativas como resposta
+        List<String> respostas = new ArrayList<>();
+
+        //aqui eh o limite de perguntas, pro for nao ultrapassar
+        int contador = 6;
+
+        //variavel de flag para verificar se alguma pergunta ja foi exibida
+        boolean valorExistente = false;
+
+        // variavel auxiliar que foi iniciada so pra primeira afirmacao ser verdadeira
+        int auxiliar = 10;
+        //for para percorrer perguntas e alternativas
+        for (int i = 0; i < contador; i++) {
+
+            //gera um numero randomico de 0 a 5 e atribui ao index
             int index = gerador.nextInt(6);
 
+         
+            
+            //se INDEX numero gerado for igual a variavel auxiliar (representa o index anterior) ele nao ira continuar
             if (index != auxiliar) {
-                System.out.println("Pergunta " + i);
-                System.out.println(questions.get(index));
-                System.out.println(alternativas.get(index));
-                System.out.println("Digite a letra da alternativa: ");
-                respostas.add(ler.next().toUpperCase());
+                //percorrer o vetor para verificar se o index da pergunta ja foi exibido
+                for (int x = 0; x < 6; x++) {
+                    int indexEvetor0 = 0;
+                    //traz o valor do vetor pra variavel
+                    int valor = vetor[x];
+                    
+                    if(index == 0){
+                        indexEvetor0 ++;
+                    }
+                    //verifica se o index atual gerado pelo RANDOM eh igual o valor
+                    if (index == valor) {
+                        //se for quer dizer que a pergunta ja foi exibida
+                        if(indexEvetor0 == 1){
+                        }else{
+                        valorExistente = true;
+                        }
+                    }
+                }
+
+                // verifica se a variavel flag esta como false, se tiver quer dizer que o index atual nunca foi exibido
+                if (valorExistente == false) {
+                    //exibe o titulo da pergunta
+                    System.out.println("Pergunta " + (i + 1));
+                    //Com base no INDEX gerado com classe randomica pega uma pergunta do array list
+                    System.out.println(questions.get(index));
+          
+                    //vai percorrer a matriz bidimenssional de ALTERNATIVAS referente a pergunta
+                    for (int j = 0; j < 4; j++) {                                       
+                        System.out.println(alternativas[index][j]);
+                    }
+                    //duas linhas pra responder a questao
+                    System.out.println("Digite a letra da alternativa: ");
+                    respostas.add(ler.next().toUpperCase());
+                    //adiciona o index inexistente ate o momento no vetor de index usados
+                    vetor[i] = index;
+                }else{
+                    //caso o index ja tenha usado o valor do i eh decrementando pq temos que ter 6 questoes
+                    i--;
+                }
+            } else {
+                //caso index seja igual a variavel da rodada passada, o i decrementa pra mantermos 6 questoes no loop
+                i--;
             }
+            //atribui o index gerado atualmente na auxiliar para comparar com a proxima
             auxiliar = index;
+            //reseta para ser verificado depois novamente
+            valorExistente = false;
         }
+
+        //metodo para imprimir na tela as respostas
+        imprimirRespostas(respostas, vetor );
+    }
+
+    static void imprimirRespostas(List<String> respostas, int [] ordemPerguntas) {
         
-        imprimirRespostas(respostas);
+        double vetor[] = consultarPorcentagem(respostas.get(0), ordemPerguntas[0]);
+//        for (int i = 0; i < ordemPerguntas.length; i++) {
+//            
+//                    for (int j = 0; j < 3; j++) {
+//                         vetor[i][j] = consultarPorcentagem(respostas.get(i), ordemPerguntas[i]);
+//                     }
+//            
+//                System.out.println("QUESTOES "+ordemPerguntas[i]);
+//        }
+        
+        for (int i = 0; i < vetor.length; i++) {
+
+                System.out.println("PORCENTAGENS POR QUESTOES " + vetor[i]);
+           
+        }
     }
     
-    static void imprimirRespostas(List<String> respostas){
-        for (int i = 0; i < respostas.size(); i++) {
-            
-            System.out.println("Resposta - ");
-            System.out.println(respostas.get(i));
-            
+    static double [] consultarPorcentagem(String resposta, int numeroPergunta){
+        
+        int alternativaEmInteiro = 0;
+        
+        switch(resposta){
+            case "A":
+                alternativaEmInteiro = 0;
+                   break;
+            case "B":
+                alternativaEmInteiro = 1;
+                   break;
+            case "C":
+                alternativaEmInteiro = 2;
+                   break;
+            case "D":
+                alternativaEmInteiro = 3;
+                   break;
         }
+        
+       double alternativas[][][]= {
+           {  
+            {16.67, -15,-5},
+            {16.67, 15, 20},
+            {16.67, -15, -5},
+            {16.67, 15, -10}
+           }, 
+           {
+            {16.67,-15,30},
+            {16.67,15,-25},
+            {16.67,-15,15},
+            {16.67,15,-25}
+           },
+           {
+            {16.67, 20, -15},
+            {16.67, -20, 20},
+            {16.67, 20, 10},
+            {16.67, 20, 10}
+           },
+           {
+            {16.67, 15, 30},
+            {16.67, 15, 30},
+            {16.67, -15, 20},
+            {16.67, 15, -10}
+           },
+           {
+            {16.67, -15, -5},
+            {16.67, 15, -20},
+            {16.67, 15, 20},
+            {16.67, -15, -5}
+           },
+            {
+            {16.67, 20, -20},
+            {16.67, 20, -20},
+            {16.67, 20, -15},
+            {16.67, -20, 30}
+           },
+           
+       };
+        double vetor[] = new double[3];
+   
+        
+        for (int i = 0; i <3; i++) {
+          vetor[i] = alternativas[numeroPergunta][alternativaEmInteiro][i];
+          System.out.println(vetor[i]);
+        }
+        
+        return vetor;
     }
+    
+    
 }
