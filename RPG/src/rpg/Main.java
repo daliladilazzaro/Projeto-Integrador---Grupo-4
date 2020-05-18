@@ -42,13 +42,13 @@ public class Main {
 
             switch (menu) {
                 case 1:
-                    System.out.println("Instrução");
+                    System.out.println("Indisponivel no momento");
                     break;
                 case 2:
                     questoes(questions, alternativas);
                     break;
                 case 3:
-                    System.out.println("Creditos");
+                    System.out.println("Indisponivel no momento");
                     break;
                 case 4:
                     sair = true;
@@ -59,6 +59,8 @@ public class Main {
     }
 
     static void imprimirMenu() {
+        System.out.println("");
+        System.out.println("########################");
         System.out.println("######  ######   ##### ");
         System.out.println("#     # #     # #     # ");
         System.out.println("#     # #     # #       ");
@@ -66,6 +68,8 @@ public class Main {
         System.out.println("#   #   #       #     # ");
         System.out.println("#    #  #       #     # ");
         System.out.println("#     # #        #####  ");
+        System.out.println("########################");
+         System.out.println("");
     }
 
     static List<String> criarQuestoes() {
