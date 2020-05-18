@@ -18,7 +18,8 @@ public class Main {
 
     //instnciamos globalmente o leitor 
     static Scanner ler = new Scanner(System.in);
-
+    static String nome="";
+    
     /**
      * @param args the command line arguments
      */
@@ -42,20 +43,25 @@ public class Main {
 
             switch (menu) {
                 case 1:
-                    System.out.println("Indisponivel no momento");
+                     System.out.println(nome+", o jogo se baseia em uma fabricante de celulares, Cia dos Celulares S/A, é uma Sociedade Anônima, de natureza privada, constituída por empreendedores, revolucionando no ramo eletrônico, com sua visão, missão e valores.\n" +
+"De acordo com algumas tomadas de decisões do gestor anterior, a empresa está passando por algumas dificuldades financeiras, e cabe você, "+nome+", reergue-la, de acordo com as tomadas de decisões!  \n" +
+                            "Vamos jogar?\n");
                     break;
                 case 2:
                     questoes(questions, alternativas);
                     break;
                 case 3:
-                    System.out.println("Indisponivel no momento");
+                     System.out.println(nome+", o jogo contou com a colaboração dos Alunos da turma do primeiro semestre-B de Análise e Desenvolvimento de Sistemas, do Centro Universitário SENAC:\n"+
+                            "Dalila Di Lazzaro, \n"+
+                            "Guilherme Caçapava, &\n"+
+                            "Vinicius Amorim de Andrade.");
                     break;
                 case 4:
                     sair = true;
                     break;
             }
         } while (!sair);
-        System.out.println("Até breve!");
+       System.out.println("Obrigado(a) por jogar, "+nome+"! Até breve!");
     }
 
     static void imprimirMenu() {
