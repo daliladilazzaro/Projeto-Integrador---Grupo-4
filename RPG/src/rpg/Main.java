@@ -28,7 +28,8 @@ public class Main {
         int menu;
 
         boolean sair = false;
-
+        System.out.print("Bem vindo(a)! Por favor, informe o nome do jogador: ");
+        nome = ler.next();
         List<String> questions = criarQuestoes();
         String[][] alternativas = criarAlternativas();
 
@@ -44,7 +45,7 @@ public class Main {
 
             switch (menu) {
                 case 1:
-                    System.out.println(nome + ", o jogo se baseia em uma fabricante de celulares, Cia dos Celulares S/A, é uma Sociedade Anônima, de natureza privada, constituída por empreendedores, revolucionando no ramo eletrônico, com sua visão, missão e valores.\n"
+                    System.out.println("\n" + nome + ", o jogo se baseia em uma fabricante de celulares, Cia dos Celulares S/A, é uma Sociedade Anônima, de natureza privada, constituída por empreendedores, revolucionando no ramo eletrônico, com sua visão, missão e valores.\n"
                             + "De acordo com algumas tomadas de decisões do gestor anterior, a empresa está passando por algumas dificuldades financeiras, e cabe você, " + nome + ", reergue-la, de acordo com as tomadas de decisões!  \n"
                             + "Vamos jogar?\n");
                     break;
@@ -52,13 +53,13 @@ public class Main {
                     questoes(questions, alternativas);
                     break;
                 case 3:
-                    System.out.println(nome + ", o jogo contou com a colaboração dos Alunos da turma do primeiro semestre-B de Análise e Desenvolvimento de Sistemas, do Centro Universitário SENAC:\n"
+                    System.out.println("\n" + nome + ", o jogo contou com a colaboração dos Alunos da turma do primeiro semestre-B de Análise e Desenvolvimento de Sistemas, do Centro Universitário SENAC:\n"
                             + "Dalila Di Lazzaro, \n"
                             + "Guilherme Caçapava, &\n"
                             + "Vinicius Amorim de Andrade.");
                     break;
                 case 4:
-                        System.out.println("TESTE 01 - "+teste_consultarPorcentagem());
+                    System.out.println("TESTE 01 - " + teste_consultarPorcentagem());
                     break;
                 case 5:
                     sair = true;
@@ -87,27 +88,26 @@ public class Main {
         List<String> question = new ArrayList<>();
 
         //Adicionando perguntas aos indexs
-        question.add("Os funcionários chegaram bem empolgados para conhecer o novo gestor que ajudará a organização se manter em período de crise financeira.");
+        question.add(nome + " nem todos os funcionários te conhecem, e o restante da organização estão empolgados para te conhecer melhor, e saber suas propostas de como irá superar essa crise financeira que a empresa está enfrentando, então você decide: ");
 
-        question.add("Após apresentação para todos, você decidiu se comunicar com o Recursos Humanos da empresa, sobre carga horária dos funcionários, benefícios, salários e bonificações.\n"
+        question.add("Após apresentação para o restante dos colaboradores, você decidiu se comunicar com o Recursos Humanos da empresa, sobre carga horária dos funcionários, benefícios, salários e bonificações.\n"
                 + "Os operários que trabalham com máquinas, estava com 20% com sazonalidade, ou seja, não estavam produzindo, e o restante estava trabalhando 10 horas a mais, inclusive aos sábados, com ganhos de horas extra, o que também não estava bom para a empresa. Alguns faziam apenas 30min de almoço, que foi combinado que nesse período não iriam bater o ponto, além de os benefícios seriam pagos pela metade, suspendendo o plano de saúde.\n"
-                + "Para a equipe de vendas, eles estavam trabalhando com 2h a mais, inclusive aos sábados, e domingos, e foi combinado que não teriam bonificações de vendas naquele ano, alguns saiam de almoço e não voltavam para a empresa. E os demais setores, estavam fazendo 2h a mais, com pagamento de hora extra, sendo que 3h era de almoço, com os benefícios nas mesmas condições.");
+                + "Para a equipe de vendas, eles estavam trabalhando com 2h a mais, inclusive aos sábados, e domingos, e foi combinado que não teriam bonificações de vendas naquele ano, alguns saiam de almoço e não voltavam para a empresa. " + nome + ", os demais setores, estavam fazendo 2h a mais, com pagamento de hora extra, sendo que 3h era de almoço, com os benefícios nas mesmas condições, então o que você decide: ");
 
-        question.add("Passando pelo setor de compras bem como almoxarifado, percebeu que os setores não estavam conversando entre si, havia materiais em excesso, como mouses, teclados, monitores, e grampeadores que pelo tanto de tempo parado,"
+        question.add("Querendo conhecer bem a organização, identificou que o setor de compras bem como almoxarifado, percebeu que os setores não estavam conversando entre si, então" + nome + ", havia materiais em excesso, como mouses, teclados, monitores, e grampeadores que pelo tanto de tempo parado,"
                 + " já estavam bem empoeirados, e percebeu também que outros materiais estavam em falta, como canetas e cadernos, o que estava fazendo os funcionários trazer de suas casas. O setor de compras disse que quem deve monitorar isto,"
                 + " é o almoxarifado, já que eles apenas efetuavam as compras que lhe eram solicitadas. "
-                + "Já o almoxarifado, informou que não estava ciente disto, já que eles fazem os pedidos das compras conforme solicitação dos demais funcionários da empresa.");
+                + "Já o almoxarifado, informou que não estava ciente disto, já que eles fazem os pedidos das compras conforme solicitação dos demais funcionários da empresa. Diante dessa situação " + nome + ", o que você faz: ");
 
-        question.add("Ainda no setor de almoxarifado e compras, ele percebe que o notebook da vendedora quebrou, o que pode atrapalhar as vendas, "
-                + "já que ela passa a maior parte fazendo visita as empresas, fazendo negociações, mas o RH soube e não acha justo que compre apenas para ela,"
-                + " alegando que todos da empresa também precisam de novos computadores e notebooks, para mantê-los  motivados.");
+        question.add("Verificando os setores de almoxarifado e compras, ele percebe que o notebook da vendedora quebrou, o que pode atrapalhar as vendas, "
+                + "já que ela passa a maior parte fazendo visita as empresas, fazendo negociações, porém " + nome + ", o RH soube e não acha justo que compre apenas para ela,"
+                + " alegando que todos da empresa também precisam de novos computadores e notebooks, para mantê-los  motivados, então você decide: ");
 
-        question.add("Você percebe que os gastos estão elevados, em diversos departamentos, onde estes podem gastar uma quantidade de até R$ 2.500,00."
-                + " Você percebeu que em alguns setores, os gastos chegaram à R$ 5.000,00");
+        question.add(nome + ", uma das suas grandes preocupações, é com os gastos desnecessários. Então você sentou com o financeiro para ver como estavam as despezas por departamento, e contatou que eles estavam acima do proposto, que é uma quantidade de até R$ 2.500,00 por setor."
+                + " Uma regra que não estava sendo respeitada, já que estavam superando o valor de R$ 5.000,00, então você decide: ");
 
-        question.add("Você identificou que o valor do aluguel da empresa não compromete a situação da financeira,"
-                + " porém a localização e acessibilidade não é boa para os funcionários.");
-
+        question.add("De acordo com a localização da empresa, você identificou que o valor do aluguel da empresa não compromete a situação da financeira, o que é bom, já que você se preocupa bastante com os custos que ela pode enfrentar sobre,"
+                + " porém, o local não é acessível para os funcionários, então " + nome + ", o que você decide: ");
         //retornando lista de questões
         return question;
     }
@@ -214,11 +214,11 @@ public class Main {
                     //duas linhas pra responder a questao
                     System.out.println("Digite a letra da alternativa: ");
                     boolean verificaAleternativa = false;
-                    
+
                     do {
                         respostas.add(ler.next().toUpperCase());
-                        switch(respostas.get(i)){
-                             case "A":
+                        switch (respostas.get(i)) {
+                            case "A":
                                 verificaAleternativa = true;
                                 break;
                             case "B":
@@ -231,12 +231,12 @@ public class Main {
                                 verificaAleternativa = true;
                                 break;
                             default:
-                                System.out.println( "Digite uma alternativa valida!");
+                                System.out.println("Digite uma alternativa valida!");
                                 respostas.remove(i);
-                              break;
+                                break;
                         }
-                    }while(!verificaAleternativa);
-                    
+                    } while (!verificaAleternativa);
+
                     //adiciona o index inexistente ate o momento no vetor de index usados
                     vetor[i] = index;
                 } else {
@@ -315,22 +315,73 @@ public class Main {
         }
 
         if (falencia < 0) {
-            System.out.println("Que pena! Você conseguiu falir nossa empresa. Com base nas suas escolhas, perdemos muito dinheiro... E ficamos no negativo.");
+            System.out.println("Que pena, " + nome + "! Você conseguiu falir nossa empresa. Com base nas suas escolhas, perdemos muito dinheiro... e ficamos no negativo. " + nome + ", veja os significados dos tipos de liderança abaixo para entender o que pode ter ocorrido com a tomada de decisão, e se necessário, jogue novamente!");
+            System.out.println("\n" + nome + ", o estilo de Liderança AUTOCRÁTICA, ela tem como foco o Chefe, e não permite abertura com os funcionários. Ele é autoritário, visão total em metas e prazos, o trabalho geralmente é hostil e sob pressão, já que estão sempre sendo supervisionados, o Autocrático não confia na sua equipe. "
+                    + "Aquele que da Feedbacks negativos em público e não faz elogios quando é merecido, os funcionários se sentem desvalorizados e desmotivados, gerando aumento nas demissões, tendo perda de talentos. "
+                    + "Quando questionado por um trabalho ruim, ou erro em algum projeto, ele logo procura o culpado, se livrando da responsabilidade."
+                    + "O nível de confiabilidade geralmente é baixo, o que é ruim, pois se sua equipe não está bem, a empresa vai mal.");
+            System.out.println("\nJá o estilo de Liderança LIBERAL, " + nome + ", ela tem como foco a Equipe, e é o extremo oposto do estilo de liderança Autocrática, pois preza a total liberdade entre os funcionários, não há supervisão, concedendo autonomia para eles. "
+                    + "Porém, eles não são tão levados a sério, já que eles não fazem um papel total de gestor, causando perda de prazos de entrega, gastos desnecessários."
+                    + " Ele geralmente não oferece feedbacks, o que pode complicar ainda mais a situação da empresa, já que os funcionários podem não se estão cometendo algum erro. O líder Liberal dificilmente demite alguém, mesmo que seja por uma justa causa, é conhecido como \"O bonzinho\", ou \"O que chora junto quando ocorre algum erro\" ");
+            System.out.println("\nAgora, o estilo de Liderança DEMOCRÁTICA, o foco no Líder e na equipe, " + nome + ". Ele conduz de forma democrática e justa as decisões da empresa e de sua equipe. Trabalha ativamente com sua equipe, os incluindo em projetos, dando espaço para sujestões, tornando um ambiente mais leve, com comunicação direta e assertiva."
+                    + " Os feedbacks são constantes, ele elogia em público, e chama a atenção em particular. Ele se preocupa com o bem estar coletivo, no desenvolvimento profissional, e oportunidades reais de crescimento, o que os estimula a criatividade e desempenho para bater metas, tornando o serviço mais produtivo."
+                    + "Isso faz com que a rotatividade seja menor, com colaboradores mais empenhados e motivados. Quando ocorre um erro, o líder Democrático, assume a culpa perante a sua equipe, e depois a reune, para buscar a solução juntos. Para o Democrático, quem tem equipe, tem tudo. ");
+
         } else {
             if (estiloLiderAuto > estiloLiderLiberal) {
                 if (estiloLiderAuto > estiloLiderDemo) {
                     float porcentagem = (float) estiloLiderAuto;
-                    System.out.println("Parabens! Temos o seu estilo de lider, é AUTOCRÁTICO, com porcentagem de: " + porcentagem + "%" + " A equipe tem confiança de " + confianca + "%" + " e a porcentagem de falência foi de " + falencia + "%");
+                    System.out.println("Parabens, " + nome + "! O seu estilo de liderança com base nas suas decisões, é AUTOCRÁTICO, com porcentagem de: " + porcentagem + "%" + " A equipe tem confiança de " + confianca + "%" + " e a porcentagem de falência foi de " + falencia + "%. " + nome + ", confira abaixo a explicação de cada tipo de líder, e caso prefira, jogue novamente!");
+                    System.out.println("\n" + nome + ", o estilo de Liderança AUTOCRÁTICA, ela tem como foco o Chefe, e não permite abertura com os funcionários. Ele é autoritário, visão total em metas e prazos, o trabalho geralmente é hostil e sob pressão, já que estão sempre sendo supervisionados, o Autocrático não confia na sua equipe. "
+                            + "Aquele que da Feedbacks negativos em público e não faz elogios quando é merecido, os funcionários se sentem desvalorizados e desmotivados, gerando aumento nas demissões, tendo perda de talentos. "
+                            + "Quando questionado por um trabalho ruim, ou erro em algum projeto, ele logo procura o culpado, se livrando da responsabilidade."
+                            + "O nível de confiabilidade geralmente é baixo, o que é ruim, pois se sua equipe não está bem, a empresa vai mal.");
+                    System.out.println("\nJá o estilo de Liderança LIBERAL, " + nome + ", ela tem como foco a Equipe, e é o extremo oposto do estilo de liderança Autocrática, pois preza a total liberdade entre os funcionários, não há supervisão, concedendo autonomia para eles. "
+                            + "Porém, eles não são tão levados a sério, já que eles não fazem um papel total de gestor, causando perda de prazos de entrega, gastos desnecessários."
+                            + " Ele geralmente não oferece feedbacks, o que pode complicar ainda mais a situação da empresa, já que os funcionários podem não se estão cometendo algum erro. O líder Liberal dificilmente demite alguém, mesmo que seja por uma justa causa, é conhecido como \"O bonzinho\", ou \"O que chora junto quando ocorre algum erro\" ");
+                    System.out.println("\nAgora, o estilo de Liderança DEMOCRÁTICA, foco no Líder e na equipe, " + nome + ". Ele conduz de forma democrática e justa as decisões da empresa e de sua equipe. Trabalha ativamente com sua equipe, os incluindo em projetos, dando espaço para sujestões, tornando um ambiente mais leve, com comunicação direta e assertiva."
+                            + " Os feedbacks são constantes, ele elogia em público, e chama a atenção em particular. Ele se preocupa com o bem estar coletivo, no desenvolvimento profissional, e oportunidades reais de crescimento, o que os estimula a criatividade e desempenho para bater metas, tornando o serviço mais produtivo."
+                            + "Isso faz com que a rotatividade seja menor, com colaboradores mais empenhados e motivados. Quando ocorre um erro, o líder Democrático, assume a culpa perante a sua equipe, e depois a reune, para buscar a solução juntos. Para o Democrático, quem tem equipe, tem tudo. ");
                 } else {
                     float porcentagem = (float) estiloLiderDemo;
-                    System.out.println("Parabens! Temos o seu estilo de lider, eh DEMOCRÁTICO, deu uma procentagem de:  " + porcentagem + "%" + "  A equipe tem onfiança " + confianca + "%" + " e a porcentagem de falência foi de " + falencia + "%");
+                    System.out.println("Parabéns, " + nome + "! O seu estilo de liderança com base nas suas decisões, é DEMOCRÁTICO, deu uma procentagem de:  " + porcentagem + "%" + "  A equipe tem onfiança " + confianca + "%" + " e a porcentagem de falência foi de " + falencia + "%. " + nome + ", confira abaixo a explicação de cada tipo de líder, e caso prefira, jogue novamente!");
+                    System.out.println("\n" + nome + ", o estilo de Liderança AUTOCRÁTICA, ela tem como foco o Chefe, e não permite abertura com os funcionários. Ele é autoritário, visão total em metas e prazos, o trabalho geralmente é hostil e sob pressão, já que estão sempre sendo supervisionados, o Autocrático não confia na sua equipe. "
+                            + "Aquele que da Feedbacks negativos em público e não faz elogios quando é merecido, os funcionários se sentem desvalorizados e desmotivados, gerando aumento nas demissões, tendo perda de talentos. "
+                            + "Quando questionado por um trabalho ruim, ou erro em algum projeto, ele logo procura o culpado, se livrando da responsabilidade."
+                            + "O nível de confiabilidade geralmente é baixo, o que é ruim, pois se sua equipe não está bem, a empresa vai mal.");
+                    System.out.println("\nJá o estilo de Liderança LIBERAL, " + nome + ", ela tem como foco a Equipe, e é o extremo oposto do estilo de liderança Autocrática, pois preza a total liberdade entre os funcionários, não há supervisão, concedendo autonomia para eles. "
+                            + "Porém, eles não são tão levados a sério, já que eles não fazem um papel total de gestor, causando perda de prazos de entrega, gastos desnecessários."
+                            + " Ele geralmente não oferece feedbacks, o que pode complicar ainda mais a situação da empresa, já que os funcionários podem não se estão cometendo algum erro. O líder Liberal dificilmente demite alguém, mesmo que seja por uma justa causa, é conhecido como \"O bonzinho\", ou \"O que chora junto quando ocorre algum erro\" ");
+                    System.out.println("\nAgora, o estilo de Liderança DEMOCRÁTICA, foco no Líder e na equipe, " + nome + ". Ele conduz de forma democrática e justa as decisões da empresa e de sua equipe. Trabalha ativamente com sua equipe, os incluindo em projetos, dando espaço para sujestões, tornando um ambiente mais leve, com comunicação direta e assertiva."
+                            + " Os feedbacks são constantes, ele elogia em público, e chama a atenção em particular. Ele se preocupa com o bem estar coletivo, no desenvolvimento profissional, e oportunidades reais de crescimento, o que os estimula a criatividade e desempenho para bater metas, tornando o serviço mais produtivo."
+                            + "Isso faz com que a rotatividade seja menor, com colaboradores mais empenhados e motivados. Quando ocorre um erro, o líder Democrático, assume a culpa perante a sua equipe, e depois a reune, para buscar a solução juntos. Para o Democrático, quem tem equipe, tem tudo. ");
                 }
             } else if (estiloLiderLiberal > estiloLiderDemo) {
                 float porcentagem = (float) estiloLiderLiberal;
-                System.out.println("Parabens! Temos o seu estilo de lider, eh LEBERAL, deu uma procentagem de:  " + porcentagem + "%" + " A equipe tem confiança " + confianca + "%" + " e a porcentagem de falência foi de " + falencia + "%");
+                System.out.println("Parabéns, " + nome + "! O seu estilo de liderança com base nas suas decisões, é LIBERAL, deu uma procentagem de:  " + porcentagem + "%" + " A equipe tem confiança " + confianca + "%" + " e a porcentagem de falência foi de " + falencia + "%. " + nome + ", confira abaixo a explicação de cada tipo de líder, e caso prefira, jogue novamente!");
+                System.out.println("\n" + nome + ", o estilo de Liderança AUTOCRÁTICA, ela tem como foco o Chefe, e não permite abertura com os funcionários. Ele é autoritário, visão total em metas e prazos, o trabalho geralmente é hostil e sob pressão, já que estão sempre sendo supervisionados, o Autocrático não confia na sua equipe. "
+                        + "Aquele que da Feedbacks negativos em público e não faz elogios quando é merecido, os funcionários se sentem desvalorizados e desmotivados, gerando aumento nas demissões, tendo perda de talentos. "
+                        + "Quando questionado por um trabalho ruim, ou erro em algum projeto, ele logo procura o culpado, se livrando da responsabilidade."
+                        + "O nível de confiabilidade geralmente é baixo, o que é ruim, pois se sua equipe não está bem, a empresa vai mal.");
+                System.out.println("\nJá o estilo de Liderança LIBERAL, " + nome + ", ela tem como foco a Equipe, e é o extremo oposto do estilo de liderança Autocrática, pois preza a total liberdade entre os funcionários, não há supervisão, concedendo autonomia para eles. "
+                        + "Porém, eles não são tão levados a sério, já que eles não fazem um papel total de gestor, causando perda de prazos de entrega, gastos desnecessários."
+                        + " Ele geralmente não oferece feedbacks, o que pode complicar ainda mais a situação da empresa, já que os funcionários podem não se estão cometendo algum erro. O líder Liberal dificilmente demite alguém, mesmo que seja por uma justa causa, é conhecido como \"O bonzinho\", ou \"O que chora junto quando ocorre algum erro\" ");
+                System.out.println("\nAgora, o estilo de Liderança DEMOCRÁTICA, foco no Líder e na equipe, " + nome + ". Ele conduz de forma democrática e justa as decisões da empresa e de sua equipe. Trabalha ativamente com sua equipe, os incluindo em projetos, dando espaço para sujestões, tornando um ambiente mais leve, com comunicação direta e assertiva."
+                        + " Os feedbacks são constantes, ele elogia em público, e chama a atenção em particular. Ele se preocupa com o bem estar coletivo, no desenvolvimento profissional, e oportunidades reais de crescimento, o que os estimula a criatividade e desempenho para bater metas, tornando o serviço mais produtivo."
+                        + "Isso faz com que a rotatividade seja menor, com colaboradores mais empenhados e motivados. Quando ocorre um erro, o líder Democrático, assume a culpa perante a sua equipe, e depois a reune, para buscar a solução juntos. Para o Democrático, quem tem equipe, tem tudo. ");
             } else {
                 float porcentagem = (float) estiloLiderDemo;
-                System.out.println("Parabens! Temos o seu estilo de lider, eh DEMOCRÁTICO, deu uma procentagem de:  " + porcentagem + "%" + " A equipe tem confiança " + confianca + "%" + " e a porcentagem de falência foi de " + falencia + "%");
+                System.out.println("Parabéns, " + nome + "! O seu estilo de liderança com base nas suas decisões, é DEMOCRÁTICO, deu uma procentagem de:  " + porcentagem + "%" + " A equipe tem confiança " + confianca + "%" + " e a porcentagem de falência foi de " + falencia + "%. " + nome + ", confira abaixo a explicação de cada tipo de líder, e caso prefira, jogue novamente!");
+                System.out.println("\n" + nome + ", o estilo de Liderança AUTOCRÁTICA, ela tem como foco o Chefe, e não permite abertura com os funcionários. Ele é autoritário, visão total em metas e prazos, o trabalho geralmente é hostil e sob pressão, já que estão sempre sendo supervisionados, o Autocrático não confia na sua equipe. "
+                        + "Aquele que da Feedbacks negativos em público e não faz elogios quando é merecido, os funcionários se sentem desvalorizados e desmotivados, gerando aumento nas demissões, tendo perda de talentos. "
+                        + "Quando questionado por um trabalho ruim, ou erro em algum projeto, ele logo procura o culpado, se livrando da responsabilidade."
+                        + "O nível de confiabilidade geralmente é baixo, o que é ruim, pois se sua equipe não está bem, a empresa vai mal.");
+                System.out.println("\nJá o estilo de Liderança LIBERAL, " + nome + ", ela tem como foco a Equipe, e é o extremo oposto do estilo de liderança Autocrática, pois preza a total liberdade entre os funcionários, não há supervisão, concedendo autonomia para eles. "
+                        + "Porém, eles não são tão levados a sério, já que eles não fazem um papel total de gestor, causando perda de prazos de entrega, gastos desnecessários."
+                        + " Ele geralmente não oferece feedbacks, o que pode complicar ainda mais a situação da empresa, já que os funcionários podem não se estão cometendo algum erro. O líder Liberal dificilmente demite alguém, mesmo que seja por uma justa causa, é conhecido como \"O bonzinho\", ou \"O que chora junto quando ocorre algum erro\" ");
+                System.out.println("\nAgora, o estilo de Liderança DEMOCRÁTICA, foco no Líder e na equipe, " + nome + ". Ele conduz de forma democrática e justa as decisões da empresa e de sua equipe. Trabalha ativamente com sua equipe, os incluindo em projetos, dando espaço para sujestões, tornando um ambiente mais leve, com comunicação direta e assertiva."
+                        + " Os feedbacks são constantes, ele elogia em público, e chama a atenção em particular. Ele se preocupa com o bem estar coletivo, no desenvolvimento profissional, e oportunidades reais de crescimento, o que os estimula a criatividade e desempenho para bater metas, tornando o serviço mais produtivo."
+                        + "Isso faz com que a rotatividade seja menor, com colaboradores mais empenhados e motivados. Quando ocorre um erro, o líder Democrático, assume a culpa perante a sua equipe, e depois a reune, para buscar a solução juntos. Para o Democrático, quem tem equipe, tem tudo. ");
             }
         }
     }
@@ -436,13 +487,13 @@ public class Main {
                 if (vetor[2] == -5) {
                     if (vetor[3] == 0) {
                         respostaTeste = "Sucesso. Resultado esperado " + 16.67 + " de Autocratico " + - 15 + " de Confiaça " + -5 + " de Falência";
-                    }else{
+                    } else {
                         respostaTeste = "Erro no teste";
                     }
-                }else{
+                } else {
                     respostaTeste = "Erro no teste";
                 }
-            }else{
+            } else {
                 respostaTeste = "Erro no teste";
             }
         } else {
