@@ -18,8 +18,8 @@ public class Main {
 
     //instnciamos globalmente o leitor 
     static Scanner ler = new Scanner(System.in);
-    static String nome="";
-    
+    static String nome = "";
+
     /**
      * @param args the command line arguments
      */
@@ -37,31 +37,35 @@ public class Main {
             System.out.println("1 - Introdução");
             System.out.println("2 - Jogar");
             System.out.println("3 - Créditos");
-            System.out.println("4 - Sair");
+            System.out.println("4 - Testes");
+            System.out.println("5 - Sair");
             System.out.print("Escolha uma das opções acima: ");
             menu = ler.nextInt();
 
             switch (menu) {
                 case 1:
-                     System.out.println(nome+", o jogo se baseia em uma fabricante de celulares, Cia dos Celulares S/A, é uma Sociedade Anônima, de natureza privada, constituída por empreendedores, revolucionando no ramo eletrônico, com sua visão, missão e valores.\n" +
-"De acordo com algumas tomadas de decisões do gestor anterior, a empresa está passando por algumas dificuldades financeiras, e cabe você, "+nome+", reergue-la, de acordo com as tomadas de decisões!  \n" +
-                            "Vamos jogar?\n");
+                    System.out.println(nome + ", o jogo se baseia em uma fabricante de celulares, Cia dos Celulares S/A, é uma Sociedade Anônima, de natureza privada, constituída por empreendedores, revolucionando no ramo eletrônico, com sua visão, missão e valores.\n"
+                            + "De acordo com algumas tomadas de decisões do gestor anterior, a empresa está passando por algumas dificuldades financeiras, e cabe você, " + nome + ", reergue-la, de acordo com as tomadas de decisões!  \n"
+                            + "Vamos jogar?\n");
                     break;
                 case 2:
                     questoes(questions, alternativas);
                     break;
                 case 3:
-                     System.out.println(nome+", o jogo contou com a colaboração dos Alunos da turma do primeiro semestre-B de Análise e Desenvolvimento de Sistemas, do Centro Universitário SENAC:\n"+
-                            "Dalila Di Lazzaro, \n"+
-                            "Guilherme Caçapava, &\n"+
-                            "Vinicius Amorim de Andrade.");
+                    System.out.println(nome + ", o jogo contou com a colaboração dos Alunos da turma do primeiro semestre-B de Análise e Desenvolvimento de Sistemas, do Centro Universitário SENAC:\n"
+                            + "Dalila Di Lazzaro, \n"
+                            + "Guilherme Caçapava, &\n"
+                            + "Vinicius Amorim de Andrade.");
                     break;
                 case 4:
+                        System.out.println("TESTE 01 - "+teste_consultarPorcentagem());
+                    break;
+                case 5:
                     sair = true;
                     break;
             }
         } while (!sair);
-       System.out.println("Obrigado(a) por jogar, "+nome+"! Até breve!");
+        System.out.println("Obrigado(a) por jogar, " + nome + "! Até breve!");
     }
 
     static void imprimirMenu() {
@@ -75,7 +79,7 @@ public class Main {
         System.out.println("#    #  #       #     # ");
         System.out.println("#     # #        #####  ");
         System.out.println("########################");
-         System.out.println("");
+        System.out.println("");
     }
 
     static List<String> criarQuestoes() {
@@ -209,7 +213,30 @@ public class Main {
                     }
                     //duas linhas pra responder a questao
                     System.out.println("Digite a letra da alternativa: ");
-                    respostas.add(ler.next().toUpperCase());
+                    boolean verificaAleternativa = false;
+                    
+                    do {
+                        respostas.add(ler.next().toUpperCase());
+                        switch(respostas.get(i)){
+                             case "A":
+                                verificaAleternativa = true;
+                                break;
+                            case "B":
+                                verificaAleternativa = true;
+                                break;
+                            case "C":
+                                verificaAleternativa = true;
+                                break;
+                            case "D":
+                                verificaAleternativa = true;
+                                break;
+                            default:
+                                System.out.println( "Digite uma alternativa valida!");
+                                respostas.remove(i);
+                              break;
+                        }
+                    }while(!verificaAleternativa);
+                    
                     //adiciona o index inexistente ate o momento no vetor de index usados
                     vetor[i] = index;
                 } else {
@@ -391,4 +418,36 @@ public class Main {
         return vetor;
     }
 
+//    teste de funcoes
+    static String teste_consultarPorcentagem() {
+        /*  Vamos testar escolhendo alterntiva da pergunta 0 (1 no word)*/
+        String alternativa = "A";
+        /*Usuario passar uma alternativa inexistente*/
+        String alternativaNaoexistente = "H";
+        int numeroPergunta = 0;
+        String respostaTeste = "";
+        /*criando um vetor para receber as tres porcentagens da alternativa A da pergunta 0 (1 no word) e tambem o tipo de lider */
+        double vetor[] = new double[4];
+        /*Recebendo os valores da funcao*/
+        vetor = consultarPorcentagem(alternativa, numeroPergunta);
+        /*Verifica conforme a tabela da funcao*/
+        if (vetor[0] == 16.67) {
+            if (vetor[1] == -15) {
+                if (vetor[2] == -5) {
+                    if (vetor[3] == 0) {
+                        respostaTeste = "Sucesso. Resultado esperado " + 16.67 + " de Autocratico " + - 15 + " de Confiaça " + -5 + " de Falência";
+                    }else{
+                        respostaTeste = "Erro no teste";
+                    }
+                }else{
+                    respostaTeste = "Erro no teste";
+                }
+            }else{
+                respostaTeste = "Erro no teste";
+            }
+        } else {
+            respostaTeste = "Erro no teste";
+        }
+        return respostaTeste;
+    }
 }
