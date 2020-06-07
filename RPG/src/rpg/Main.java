@@ -363,6 +363,9 @@ public class Main {
             case "D":
                 alternativaEmInteiro = 3;
                 break;
+            default:
+                 System.out.println("Erro alternativa");
+            break;
         }
 
 //        TABELA dos valores
