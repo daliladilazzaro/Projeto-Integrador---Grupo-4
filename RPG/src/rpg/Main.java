@@ -24,66 +24,26 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        int menu;
-
-        boolean sair = false;
+     
         System.out.print("Bem vindo(a)! Por favor, informe o nome do jogador: ");
-        nome = ler.next();
-        List<String> questions = criarQuestoes();
-        String[][] alternativas = criarAlternativas();
-
-        do {
-            imprimirMenu();
-            System.out.println("1 - Introdução");
-            System.out.println("2 - Jogar");
-            System.out.println("3 - Créditos");
-            System.out.println("4 - Testes");
-            System.out.println("5 - Sair");
-            System.out.print("Escolha uma das opções acima: ");
-            menu = ler.nextInt();
-
-            switch (menu) {
-                case 1:
-                    System.out.println("\n" + nome + ", o jogo se baseia em uma fabricante de celulares, Cia dos Celulares S/A, é uma Sociedade Anônima, de natureza privada, constituída por empreendedores, revolucionando no ramo eletrônico, com sua visão, missão e valores.\n"
-                            + "De acordo com algumas tomadas de decisões do gestor anterior, a empresa está passando por algumas dificuldades financeiras, e cabe você, " + nome + ", reergue-la, de acordo com as tomadas de decisões!  \n"
-                            + "Vamos jogar?\n");
-                    break;
-                case 2:
-                    questoes(questions, alternativas);
-                    break;
-                case 3:
-                    System.out.println("\n" + nome + ", o jogo contou com a colaboração dos Alunos da turma do primeiro semestre-B de Análise e Desenvolvimento de Sistemas, do Centro Universitário SENAC:\n"
-                            + "Dalila Di Lazzaro, \n"
-                            + "Guilherme Caçapava, &\n"
-                            + "Vinicius Amorim de Andrade.");
-                    break;
-                case 4:
-                    System.out.println("TESTE 01 - " + teste_consultarPorcentagem());
-                    break;
-                case 5:
-                    sair = true;
-                    break;
-            }
-        } while (!sair);
-        System.out.println("Obrigado(a) por jogar, " + nome + "! Até breve!");
+        nome = ler.next();  
+        menu();
     }
 
     static void imprimirMenu() {
         System.out.println("");
-        System.out.println("########################");
-        System.out.println("######  ######   ##### ");
-        System.out.println("#     # #     # #     # ");
-        System.out.println("#     # #     # #       ");
-        System.out.println("######  ######  #  #### ");
-        System.out.println("#   #   #       #     # ");
-        System.out.println("#    #  #       #     # ");
-        System.out.println("#     # #        #####  ");
-        System.out.println("########################");
+        System.out.println("#                                                  #     #                                             ");
+        System.out.println("#       # #####  ###### #####     #####  ######    ##    # ######  ####   ####   ####  #  ####   ####  ");
+        System.out.println("#       # #    # #      #    #    #    # #         # #   # #      #    # #    # #    # # #    # #      ");
+        System.out.println("#       # #    # #####  #    #    #    # #####     #  #  # #####  #      #    # #      # #    #  ####  ");
+        System.out.println("#       # #    # #      #####     #    # #         #   # # #      #  ### #    # #      # #    #      # ");
+        System.out.println("#       # #    # #      #   #     #    # #         #    ## #      #    # #    # #    # # #    # #    # ");
+        System.out.println("####### # #####  ###### #    #    #####  ######    #     # ######  ####   ####   ####  #  ####   ####  ");
         System.out.println("");
     }
 
     static List<String> criarQuestoes() {
+        
         //criação do ArrayList de questões
         List<String> question = new ArrayList<>();
 
@@ -386,7 +346,7 @@ public class Main {
         }
     }
 
-    static double[] consultarPorcentagem(String resposta, int numeroPergunta) {
+    public  static double[] consultarPorcentagem(String resposta, int numeroPergunta) {
         //Essa variavel vai determinar o valor da alternativa respondida de 0 a 3 , representando a posicao das alternativas no array tridimenssional
         int alternativaEmInteiro = 0;
 
@@ -469,36 +429,55 @@ public class Main {
         return vetor;
     }
 
-//    teste de funcoes
-    static String teste_consultarPorcentagem() {
-        /*  Vamos testar escolhendo alterntiva da pergunta 0 (1 no word)*/
-        String alternativa = "A";
-        /*Usuario passar uma alternativa inexistente*/
-        String alternativaNaoexistente = "H";
-        int numeroPergunta = 0;
-        String respostaTeste = "";
-        /*criando um vetor para receber as tres porcentagens da alternativa A da pergunta 0 (1 no word) e tambem o tipo de lider */
-        double vetor[] = new double[4];
-        /*Recebendo os valores da funcao*/
-        vetor = consultarPorcentagem(alternativa, numeroPergunta);
-        /*Verifica conforme a tabela da funcao*/
-        if (vetor[0] == 16.67) {
-            if (vetor[1] == -15) {
-                if (vetor[2] == -5) {
-                    if (vetor[3] == 0) {
-                        respostaTeste = "Sucesso. Resultado esperado " + 16.67 + " de Autocratico " + - 15 + " de Confiaça " + -5 + " de Falência";
-                    } else {
-                        respostaTeste = "Erro no teste";
-                    }
-                } else {
-                    respostaTeste = "Erro no teste";
-                }
-            } else {
-                respostaTeste = "Erro no teste";
+    private static void menu() {
+        boolean resultado = false;
+        boolean sair = false;
+        int menu;
+        do {
+       
+            imprimirMenu();
+            System.out.println("1 - Introdução");
+            System.out.println("2 - Jogar");
+            System.out.println("3 - Créditos");
+            System.out.println("4 - Sair");
+            System.out.print("Escolha uma das opções acima: ");
+            menu = ler.nextInt();
+
+            sair = menuOpcoes(menu);
+       
+        } while (!sair);
+        System.out.println("Obrigado(a) por jogar, " + nome + "! Até breve!");
+    }
+
+    public static Boolean  menuOpcoes(int menu) {
+        
+       boolean sair = false;
+        List<String> questions = criarQuestoes();
+        String[][] alternativas = criarAlternativas();
+        switch (menu) {
+                case 1:
+                    System.out.println("\n" + nome + ", o jogo se baseia em uma fabricante de celulares, Cia dos Celulares S/A, é uma Sociedade Anônima, de natureza privada, constituída por empreendedores, revolucionando no ramo eletrônico, com sua visão, missão e valores.\n"
+                            + "De acordo com algumas tomadas de decisões do gestor anterior, a empresa está passando por algumas dificuldades financeiras, e cabe você, " + nome + ", reergue-la, de acordo com as tomadas de decisões!  \n"
+                            + "Vamos jogar?\n");
+                    break;
+                case 2:
+                    questoes(questions, alternativas);
+                    break;
+                case 3:
+                    System.out.println("\n" + nome + ", o jogo contou com a colaboração dos Alunos da turma do primeiro semestre-B de Análise e Desenvolvimento de Sistemas, do Centro Universitário SENAC:\n"
+                            + "Dalila Di Lazzaro, \n"
+                            + "Guilherme Caçapava, &\n"
+                            + "Vinicius Amorim de Andrade.");
+                    break;
+                case 4:
+                    sair = true;
+                    break;
+                    
+                default:
+                    System.out.println("Digite algo valído!");
+                    break;
             }
-        } else {
-            respostaTeste = "Erro no teste";
-        }
-        return respostaTeste;
+        
+        return sair;
     }
 }
